@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app"></div>
+
+  <!-- 方法1：script标签也可以用来做模板 -->
+  <script type="x-template" id="my-app">
+  <!-- 缺点是没有高亮 -->
+  <div>
+    <h2>Number: {{count}}</h2>
+    <button @click='minusCount()'>-1</button>
+    <button @click='addCount()'>+1</button>
+  </div>
+  </script>
+  <!-- 方法2：使用template标签 -->
+  <template id="my-app2">
+    <!-- 这种方法更常用 -->
+    <div>
+      <h2>Number: {{count}}</h2>
+      <button @click='minusCount()'>-1</button>
+      <button @click='addCount()'>+1</button>
+    </div>
+  </template>
+  <script src="./js/Vue.js"></script>
+  <script>
+    const app = Vue.createApp({
+      template: '#my-app2',
+      data () {
+        return {
+          count: 0
+        }
+      },
+      methods: {
+        addCount () {
+          this.count++
+        },
+        minusCount () {
+          this.count--
+        },
+        productCount: (times) => {
+          this.count = times * this.count
+        }
+      },
+    }).mount('#app')
+
+    let a = {
+      b: 2,
+      fn: () => {
+        console.log(this.b)
+        return true
+      }
+    }
+  </script>
+</body>
+
+</html>

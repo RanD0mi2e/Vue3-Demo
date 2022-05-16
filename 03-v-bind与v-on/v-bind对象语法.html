@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>v-bind</title>
+
+  <style>
+    .pink {
+      color: pink;
+    }
+
+    .font-size {
+      font-size: 20px;
+    }
+
+    .className {
+      color: brown;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app"></div>
+  <!-- 在vue3中，template允许有多个根元素，但在vue2中只允许一个 -->
+  <template id="renderTemplate">
+    <div>
+      <h2 :class="msgClass">{{message}}</h2>
+      <h2 :class="{'className':isShow}">123456</h2>
+      <!-- 类名甚至可以绑定方法 -->
+      <h2 :class="getClassName()">你好呀~</h2>
+      <button @click="toggle()">切换</button>
+    </div>
+  </template>
+  <script src="../js/Vue.js"></script>
+  <script>
+    const app = Vue.createApp({
+      template: `#renderTemplate`,
+      data () {
+        return {
+          message: 'Hello, World',
+          msgClass: {
+            pink: 'pink',
+            ['font-size']: 'font-size'
+          },
+          isShow: true
+        }
+      },
+      methods: {
+        toggle () {
+          this.isShow = !this.isShow
+        },
+        getClassName () {
+          return {
+            pink: 'pink',
+            ['font-size']: 'font-size'
+          }
+        }
+      },
+    }).mount('#app')
+  </script>
+</body>
+
+</html>

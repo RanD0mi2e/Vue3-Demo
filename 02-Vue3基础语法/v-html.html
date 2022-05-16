@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>v-html</title>
+</head>
+
+<body>
+  <div id="app"></div>
+  <template id="renderTemplate">
+    <div>
+      <h2>{{message}}</h2>
+      <h2 v-html="message"></h2>
+    </div>
+  </template>
+  <script src="../js/Vue.js"></script>
+  <script>
+    const app = Vue.createApp({
+      template: `#renderTemplate`,
+      data () {
+        return {
+          // 如果数据是html标签，那么要解析内容必须使用v-html
+          message: '<h2 style="font-size:20px; color:pink;">你好呀~</h2>'
+        }
+      },
+    }).mount('#app')
+  </script>
+</body>
+
+</html>
