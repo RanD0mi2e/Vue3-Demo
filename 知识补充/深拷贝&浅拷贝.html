@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>深拷贝与浅拷贝</title>
+</head>
+
+<body>
+  <script>
+    const obj = {
+      name: 'niko',
+      age: '18',
+      friend: {
+        name: 'yankos',
+        age: '22'
+      }
+    }
+
+    // 浅拷贝，myObj获得了obj中存储的地址值
+    const myObj = obj
+    obj.name = 'hahaha'
+    console.log('myObj', myObj)
+
+    // 深拷贝（仅对单层对象恶言）
+    const myObj2 = Object.assign({}, obj)
+    obj.name = 'kennys'
+    console.log('myObj2', myObj2)
+
+    // 深拷贝：无论嵌套层数多深都不会影响
+    const myObj3 = JSON.parse(JSON.stringify(obj))
+    obj.friend.name = 'hahaha'
+    console.log('myObj3', myObj3)
+  </script>
+</body>
+
+</html>

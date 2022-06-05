@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app"></div>
+  <template id="renderTemplate">
+    <div>
+      <!-- 绑定输入框 -->
+      <label for="intro">
+        <span>自我介绍</span>
+        <textarea name="" id="intro" cols="30" rows="10" v-model.number="number"></textarea>
+        <h2>{{message}}</h2>
+        <button @click="checkType()">查看类型</button>
+        <br>
+      </label>
+
+      <!-- 绑定checkbox 多选 -->
+      <label for="like">
+        <span>是否同意协议</span>
+        <input id="like" v-model="isAgree" type="checkbox">
+      </label>
+
+      <div>爱好</div>
+      <label for="basketBall">
+        <input type="checkbox" value="basketBall" v-model="hobby"> 篮球
+      </label>
+      <label for="footBall">
+        <input type="checkbox" value="footBall" v-model="hobby"> 足球
+      </label>
+      <label for="tennis">
+        <input type="checkbox" value="tennis" v-model="hobby"> 网球
+      </label>
+      <h2>{{hobby}}</h2>
+
+      <!-- 绑定radio 单选-->
+      <div>性别</div>
+      <label for="male">
+        <input type="radio" value="man" v-model="sex"> 男
+      </label>
+      <label for="female">
+        <input type="radio" value="female" v-model="sex"> 女
+      </label>
+      <div v-if="sex">{{sex}}</div>
+
+      <!-- select -->
+      <span>住址</span>
+      <select v-model="address" name="" id="">
+        <option value="beijing">北京</option>
+        <option value="nanning">南宁</option>
+        <option value="shanghai">上海</option>
+      </select>
+      <div>{{address}}</div>
+
+      <br>
+      <!-- trim修饰符，wordWithSpace接收输入框内容，且内容的前后空白被清除 -->
+      <input type="text" v-model.trim="wordWithSpace">
+      <button>查看结果</button>
+    </div>
+  </template>
+  <script src="../js/Vue.js"></script>
+  <script>
+    const app = Vue.createApp({
+      template: `#renderTemplate`,
+      data () {
+        return {
+          message: 'Hello, World',
+          number: 0,
+          isAgree: false,
+          hobby: [],
+          sex: 'man',
+          address: '',
+          wordWithSpace: '  Hello world   '
+        }
+      },
+      methods: {
+        checkType () {
+          console.log('类型', this.number, typeof this.number)
+        }
+      },
+    }).mount('#app')
+  </script>
+</body>
+
+</html>

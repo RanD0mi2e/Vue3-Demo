@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app"></div>
+  <template id="renderTemplate">
+    <div>
+      <input type="text" v-model="score">
+      <div v-if="score>90">优秀</div>
+      <div v-else-if="score>80">良好</div>
+      <div v-else>及格</div>
+      <template v-if="score>0">
+        <div>小眠</div>
+        <div>小白</div>
+        <div>小红</div>
+      </template>
+    </div>
+  </template>
+  <script src="../js/Vue.js"></script>
+  <script>
+    const app = Vue.createApp({
+      template: `#renderTemplate`,
+      data () {
+        return {
+          message: 'Hello, World',
+          score: 0
+        }
+      },
+    }).mount('#app')
+  </script>
+</body>
+
+</html>
